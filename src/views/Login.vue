@@ -38,7 +38,10 @@ export default {
   methods: {
     submit() {
       if (!this.username || !this.password) {
-        window.console.log('请输入账号密码！');
+        this.$notify.warning({
+          title: '警告',
+          message: '请输入账号密码！',
+        });
       } else {
         this.login();
       }
@@ -54,10 +57,9 @@ export default {
         this.isLoading = false;
       }, () => {
         this.isLoading = false;
-        this.$notify({
-          title: '警告',
+        this.$notify.error({
+          title: '错误',
           message: '登录失败',
-          type: 'warning'
         });
       });
     },
